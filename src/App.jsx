@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
+import Navbar from "./components/Nav";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={'ADCS '} />
+          
+        </Route>
+        <Route path="*" element={<>
+          <Navbar />
+          <div className="p-3">
+            <div className='phaser rounded d-flex my-5 text-center w-100 py-[100px]'>
+                {<div className='mx-auto d-flex text-center'> <BsTriangle className='fs-5 mt-1 icon me-2' /> {location.pathname.includes('donate')?'404 ENOENT':'404 ENOENT'}</div>}
+            </div>
+          </div>
+        </>} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
