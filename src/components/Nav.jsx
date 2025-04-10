@@ -3,7 +3,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
 import { useStateContext } from '../state/StateContext'
 
-const Nav = (props) => {
+const Navbar = (props) => {
     const { user } = useStateContext()
     const [hasPop, setHasPop] = useState(props.hasPop)
 
@@ -23,7 +23,7 @@ const Nav = (props) => {
                     </div>
                 </nav>
             } */}
-            <nav className={`navbar slideIn custom-navbar pb-0 pt-0 ${!props.hasBg ? 'bg-light' : 'text-light dd'} shadow-sm`} style={{
+            <nav className={`navbar slideIn text-lightAf custom-navbar pb-0 pt-0 ${!props.hasBg ? 'text-light' : 'text-light dd'} shadow-sm`} style={{
                 background: props?.trans && '#efefef20',
                 color: props?.trans && '#efefef !important'
             }}>
@@ -34,74 +34,28 @@ const Nav = (props) => {
                         }
                     </pre> */}
                     <h2 className='m-0'>
-                        <Link to={'/'} onClick={() => window.scroll({ top: 0 })}>
+                        <Link to={'/'} className='no-dec' onClick={() => window.scroll({ top: 0 })}>
                             <div className="d-flex">
-                                <LazyLoadImage src={'/logo.png'} effect='opacity' alt="Agrosmart Logo" about='Agrosmart Logo' height={props?.hasBg ? '80px' : '60px'} className='rounded my-auto' style={{
-                                    maxWidth: '70vw',
-                                    objectFit: 'contain'
-                                }} />
+                                <LazyLoadImage src={'/logo-b1x1.png'} effect='opacity' alt="Agrosmart Logo" about='Agrosmart Logo' width={'60px'} className='my-auto bg-light roundAf' style={{
+                                //    borderRadius: '500px',
+                                }} /> <span className="d-none d-sm-inline my-auto ms-2 no-dec fs-1">USGEAAN</span>
                             </div>
                         </Link>
                     </h2>
-                    {hasPop && (
-                        <div className="rounded-lg" style={{
-                            position: 'fixed',
-                            top: '0',
-                            left: '0',
-                            right: '0',
-                            bottom: '0',
-                            backgroundColor: '#0e0e0e40',
-                            zIndex: 1001
-                        }} onClick={() => setHasPop(false)}>
-                            <div
-                                className="d-flex slideIn flex-column  ms-auto me-5 mt-5  space-y-4  rounded-lg bg-light rounded"
-                                style={{
-                                    width: '200px',
-                                    // position: 'relative',
-                                    // top: '40px',
-                                    // right:'50px'
-                                }}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                {[
-                                    { path: "/alumini-network", label: "Alumini Network" },
-                                    { path: "/get-involved", label: "Get Involved" },
-                                    { path: user?._id ? '/profile' : "/signin", label: user?._id ? 'Profile' : "Login" },
-                                    { path: "/resources", label: "Resources" },
-                                    { path: "/programmes", label: "Programs" },
-                                    { path: "/about", label: "About" },
-                                    // { path: "/contact", label: "Contact Us" },
-                                ].map(({ path, label }) => (
-                                    <Link
-                                        key={label}
-                                        to={path}
-                                        className="m-1 text-dark noDec noDecoration subnav-btn rounded p-2 ps-4 "
-                                        onClick={() => setHasPop(false)} style={{
-                                            textDecoration: 'none',
-                                        }}
-                                    >
-                                        {label}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-                    )}
                     {!hasPop &&
-                        <div className="ms-auto me-2 d-none d-lg-block">
-                            <Link to={'/alumini-network'} className={`me-1 rounded btn ${props?.hasBg ? 'text-light shadow-sm acbg' : 'text-dark'}`} onClick={() => window.scroll({ top: 0 })}>Alumini Network</Link>
-                            <Link to={'get-involved'} className={`me-1 rounded btn ${props?.hasBg ? 'text-light shadow-sm acbg' : 'text-dark'}`}>Get Involved</Link>
-                            <Link to={user?._id ? "/profile" : '/signin'} className={`me-1 rounded btn ${props?.hasBg ? 'text-light shadow-sm acbg' : 'text-dark'}`}>{user?._id ? "Profile" : 'Login'}</Link>
+                        <div className="ms-auto me-2  d-lg-block">
+                            <Link to={'/dashboard'} className={`me-1 rounded btn ${props?.hasBg ? 'text-light shadow-sm acbg' : 'text-dark'}`} onClick={() => window.scroll({ top: 0 })}>Admin Portal <br /> <hr className='m-0 mt-1 w-75 mx-auto border-2' style={{
+                                opacity:'1'
+                            }} /> </Link>
+                            <Link to={''} style={{opacity:'0.7'}} className={`me-1 text-muted text-grey-400 rounded btn  ${props?.hasBg ? 'text-muted shadow-sm acbg' : 'text-muted    '}`}>Main Website<br /> <hr className='m-0 mt-1 w-75 mx-auto border-2' style={{
+                                opacity:'0'
+                            }} ></hr></Link>
                         </div>
                     }
-                    <a className={`burger me-2 ${hasPop && 'active'} ${props?.hasBg && 'text-light'}`} data-bs-toggle="collapse" data-bs-target="#main-navbar" onClick={() => {
-                        setHasPop(prev => !prev)
-                    }}>
-                        <span ></span>
-                    </a>
                 </div>
             </nav >
         </div >
     )
 }
 
-export default Nav
+export default Navbar

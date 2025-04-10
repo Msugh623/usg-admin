@@ -1749,6 +1749,12 @@ a:hover {
     color: #efefef;
 }
 
+.themebg-grad {
+    background: linear-gradient(87.52deg, #06AEF4 -81.11%, #123F55 49.84%),
+    conic-gradient(from 218.61deg at 96.91% 3.37%, #000000 0deg, rgba(0, 0, 0, 0) 185.39deg, #000000 360deg);
+}
+
+
 .themetxt {
     color: #123F55 !important;
 }

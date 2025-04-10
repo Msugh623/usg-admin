@@ -33,7 +33,6 @@ const Layout = () => {
 
   return (
     <div style={{ minWidth: '280px' }}>
-      <Navbar />
       {sh > 400 && <div onClick={() => scroll({ top: 0, behavior: "smooth" })} style={{
         position: 'fixed',
         bottom: '40px',
