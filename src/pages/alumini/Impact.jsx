@@ -4,22 +4,22 @@ import Delay from '../../components/Delay'
 import { BiSearch, BiX } from 'react-icons/bi'
 import { FaTrash } from 'react-icons/fa'
 
-const AMW = () => {
-    const { amw, setModal } = useStateContext()
+const Impact = () => {
+    const { impact, setModal } = useStateContext()
     
-        const [prsAmw, setAmw] = useState([])
+        const [prsImpact, setImpact] = useState([])
         const [chapKey, setChapKey] = useState('')
             const [searchAmw, setSearchAmw] = useState(false)
         
     useEffect(() => {
-        setAmw(amw.filter(a => { 
-                  return ( (a?.name || '').toLowerCase().includes(chapKey.toLowerCase()) ||
-            (a?.cateogry || '').toLowerCase().includes(chapKey.toLowerCase()))
+        setImpact(impact.filter(a => { 
+                  return ( (a?.title || '').toLowerCase().includes(chapKey.toLowerCase()) ||
+            (a?.description || '').toLowerCase().includes(chapKey.toLowerCase()))
     }))
-        }, [chapKey, amw])
+        }, [chapKey, impact])
   return (
-      <div className="col-md-12 container row pt-4" id='alumini-making-waves'>
-          <h2 className='px-4'>Alumini Making Waves</h2>
+      <div className=" py-4 pb-5" id='alumini-making-waves' >
+          <h2 className='px-4'>Impact Stories</h2>
     <div className="container noShade row mx-auto">
         <div className="pt-4"  style={{
             maxHeight: '800px',
@@ -62,10 +62,10 @@ const AMW = () => {
                 }}>
                     <div className="d-flex px-3">
                         <div className=' text-muted w-[50%] min-w-[50%] md:w-[35%] md:min-w-[35%]'>
-                            Name
+                            Title
                         </div>
                         <div className="me-auto">
-                            <a className="text-dark no-dec text-muted pe-2">Category</a>
+                            <a className="text-dark no-dec text-muted pe-2">Description</a>
                           </div>
                           <div className="ms-auto">
                             <a className="text-dark no-dec text-muted pe-2">Action</a>
@@ -73,26 +73,36 @@ const AMW = () => {
                     </div>
                 </div>
             <div className="chap">
-            {prsAmw.map((chapter, index) => (
-                <div className={`p-2 py-4 ${index%2==0&&'bg-[#123F5520]'}`} key={'' + chapter?.name + chapter?.category}>
+            {prsImpact.map((chapter, index) => (
+                <div className={`p-2 py-4 pb-0 pt-1 ${index%2==0&&'bg-[#123F5520]'}`} key={'' + chapter?.name + chapter?.description}>
                     <div className="d-flex ">
-                        <h4 className='w-[50%] min-w-[50%] md:w-[35%] md:min-w-[35%]'>
-                            {chapter.name}
-                        </h4>
-                        <div className="me-auto">
-                            <a className="text-dark no-dec pe-2">{ chapter?.cateogry}</a>
+                        <div className="pt-3 pe-3">
+                            <img
+                                src={chapter?.image}
+                                alt={chapter?.name}
+                                className="min-w-[70px] my-auto max-w-[80px] object-cover mb-4" />
                         </div>
-                        <div className=" ms-auto d-flex ps-3">
+                        <div className="max-w-[80%] my-auto" >
+                            <h4 className=''>
+                                <div className="">{chapter.title.slice(0,64)}...</div>
+                            </h4>
+                            <div className="me-auto">
+                                <a className="text-dark no-dec pe-2">{ chapter?.description.slice(0,64)}...</a>
+                            </div>
+                        </div>
+                        <div className="ms-auto m d-flex ps-3">
+                            <div className="my-auto d-flex">
                             <div className="ms-auto slideLeft border border-dark rounded p-2">Edit</div>
                             <div className="m-1"></div>
-                        <div className="ms-auto slideLeft border border-dark rounded p-2 pt-3"><FaTrash className='icon'/></div>
+                            <div className="ms-auto slideLeft border border-dark rounded p-2 pt-3"><FaTrash className='icon'/></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             ))}
             </div>
             {
-                !prsAmw.length ?
+                !prsImpact.length ?
                     <div className="p-3 h-100">
 
                         <div className='phaser p-5'>
@@ -100,7 +110,7 @@ const AMW = () => {
                                 {
                                     chapKey ?
                                         'No Wave making Alumini found  matching your search, Try a different keyword'
-                                        : 'Watch this space for Alumini Making Waves'
+                                        : 'Watch this space for Impact Stories'
                                 }
                             </Delay>
                         </div>
@@ -114,4 +124,4 @@ const AMW = () => {
   )
 }
 
-export default AMW
+export default Impact

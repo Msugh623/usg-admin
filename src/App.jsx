@@ -9,6 +9,9 @@ import Profiler from "./pages/Profiler";
 import UpdateProfile from "./pages/auth/UpdateProfile";
 import Main from "./pages/dash/Main";
 import AMW from "./pages/alumini/AMW";
+import Impact from "./pages/alumini/Impact";
+import Chapters from "./pages/alumini/Chapters";
+import Spotlight from "./pages/alumini/Spotlight";
 
 const App = () => {
   return (
@@ -22,6 +25,10 @@ const App = () => {
           <Route path="profile/update" element={<UpdateProfile />} />
           <Route path="main" element={<Main />} />
           <Route path="alumni-making-waves" element={<AMW />} />
+          <Route path="impact-stories" element={<Impact />} />
+          <Route path="chapters" element={<Chapters />} />
+          <Route path="alumini-spotlight" element={<Spotlight />} />
+
 
           {/* 404 handler for /dashboard */}
           <Route path="/dashboard/:path" element={<>

@@ -43,10 +43,10 @@ const Sidebar = () => {
           Chapters
         </Link>
         <Link
-          to="/dashboard/alumni-spotlight"
-          className={`${location.pathname.includes('/dashboard/alumni-spotlight') ? 'bg-light themetxt p-3 no-dec' : 'nav-link text-white py-3 hover:bg-gray-700 rounded'}`}
+          to="/dashboard/alumini-spotlight"
+          className={`${location.pathname.includes('/dashboard/alumini-spotlight') ? 'bg-light themetxt p-3 no-dec' : 'nav-link text-white py-3 hover:bg-gray-700 rounded'}`}
         >
-          Alumni Spotlight
+          Alumini Spotlight
         </Link>
         <Link
           to="/dashboard/resources"
