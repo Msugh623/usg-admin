@@ -14,12 +14,14 @@ const DashAppBody = () => {
     setAllow(true)
   }, [])
   return (allow?
-      <div className=''>
-      <div className="d-flex">
+    <div className='' style={{
+        maxWidth:'100vw'
+      }}>
+      <div className="d-flex ">
         <div>
           <Sidebar />
         </div>
-        <div className="w-100">
+        <div className="max-h-[100vh] overflow-y-auto">
         <Outlet/>
         </div>
         </div>

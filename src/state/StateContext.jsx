@@ -40,7 +40,6 @@ const StateContext = ({ children }) => {
     } catch (err) {
       console.log("ERROR: " + err.message)
     } finally {
-      setIsFetching(false)
       try {
         const resMedia = await requests.getIMedia()
         setGallery(resMedia)
@@ -83,7 +82,9 @@ const StateContext = ({ children }) => {
         setSubCommitees(resSubCommitees?.data)
       } catch (err) {
         console.log("ERROR: " + err.message)
-      } 
+      } finally {
+        setIsFetching(false)
+      }
     }
   }
 

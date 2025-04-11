@@ -12,6 +12,10 @@ import AMW from "./pages/alumini/AMW";
 import Impact from "./pages/alumini/Impact";
 import Chapters from "./pages/alumini/Chapters";
 import Spotlight from "./pages/alumini/Spotlight";
+import Resources from "./pages/resources/Resources";
+import News from "./pages/resources/News";
+import Events from "./pages/resources/Events";
+import About from "./pages/resources/About";
 
 const App = () => {
   return (
@@ -28,6 +32,10 @@ const App = () => {
           <Route path="impact-stories" element={<Impact />} />
           <Route path="chapters" element={<Chapters />} />
           <Route path="alumini-spotlight" element={<Spotlight />} />
+          <Route path="resources" element={<Resources />} />
+          <Route path="news" element={<News />} />
+          <Route path="events" element={<Events />} />
+          <Route path="about" element={<About />} />
 
 
           {/* 404 handler for /dashboard */}
