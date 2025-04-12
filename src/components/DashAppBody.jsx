@@ -15,13 +15,15 @@ const DashAppBody = () => {
   }, [])
   return (allow?
     <div className='' style={{
-        maxWidth:'100vw'
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      overflow: 'hidden',
       }}>
-      <div className="d-flex ">
+      <div className="d-flex max-h-[100vh] o-hidden">
         <div>
           <Sidebar />
         </div>
-        <div className="max-h-[100vh] overflow-y-auto">
+        <div className="max-h-[100vh] w-100 overflow-y-auto">
         <Outlet/>
         </div>
         </div>

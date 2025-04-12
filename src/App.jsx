@@ -16,9 +16,11 @@ import Resources from "./pages/resources/Resources";
 import News from "./pages/resources/News";
 import Events from "./pages/resources/Events";
 import About from "./pages/resources/About";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
+    <>
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -57,7 +59,9 @@ const App = () => {
           </div>
         </>} />
       </Routes>
-    </Router>
+      </Router>
+      <ToastContainer position="top-right" />
+      </>
   );
 };
 
