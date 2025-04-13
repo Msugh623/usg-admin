@@ -31,6 +31,7 @@ const DashAppBody = () => {
     onresize = () => {
       window.innerWidth>768?setNavIsHidden(false):setNavIsHidden(true)
     }
+    onresize()
     document.title = 'USGEAAN Admin - Dashboard'
     const t = localStorage.logintoken
     if (!t) {
