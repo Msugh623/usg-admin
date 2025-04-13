@@ -1,13 +1,62 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStateContext } from '../state/StateContext';
 import { useNavigate } from 'react-router-dom';
-import { FaEnvelope, FaFacebook, FaLinkedin, FaSpinner } from 'react-icons/fa';
-import { FaPen } from 'react-icons/fa6';
+import { FaSpinner } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import { requests } from '../../api/routes';
 
 const Profiler = () => {
-    const { user, isFetching, setTitle, setIsFetching } = useStateContext();
+    const { user, isFetching, setTitle,setUser } = useStateContext();
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false)
+    const [data, setData] = useState({
+        "email": "",
+        "industry": "",
+        "state": "",
+        ...user,
+        industry:( user.industry||[]).toString(),
+        programme: (user.programme || []).toString(),
+        photo:''
+    })
+
+    function handleInput({ target }) {
+        setData(prev => ({
+            ...prev,
+            [target.name]: target.value
+        }))
+    }
+
+    async function handleSubmit(e) {
+            e.preventDefault()
+            try {
+                setIsLoading(true)
+                const prs = {
+                    oldPassword: data.oldPassword,
+                    newPassword: data.newPassword,
+                }
+                const fd = new FormData()
+                const keys=Object.keys(prs)
+                keys.forEach(key => {
+                    if (prs[key]) {
+                        fd.append(key, prs[key])
+                    }
+                })
+                const _ = await requests.usrUpdate(prs?.photo ? fd : (() => {
+                    delete prs.photo
+                    return prs
+                })())
+                toast.success('Update Succesful')
+                const res = await requests.getAuthState()
+                setUser(res.user)
+                setTimeout(() => {
+                    state.reload()
+                }, 300);
+            } catch (err) {
+                toast.error('ERROR: ' + (err.response.data.message || err.response.data.error || err.message))
+            } finally {
+                setIsLoading(false)
+            }
+        }
 
     useEffect(() => {
         setTitle('Profile');
@@ -38,7 +87,15 @@ const Profiler = () => {
                     alt={user?.fullname}
                     className="w-[150px] h-[150px] rounded-full object-cover mx-auto mb-3"
                 />
-                <button className="btn btn-outline-primary">
+                <button className="btn btn-outline-primary" onClick={() => {
+                    navigate('profile/update')
+                    setTimeout(() => {
+                        const filer = document.getElementById('filer')
+                        filer.focus()
+                        filer.click()
+                        filer.addEventListener('change',()=>document.getElementById('submit').click())
+                    },400)
+                }}>
                     Upload new photo
                 </button>
                 <p className="text-gray-500 mt-2">
@@ -69,11 +126,14 @@ const Profiler = () => {
 
             <div className="border rounded-lg p-4">
                 <h5 className="text-gray-700 mb-3">Change Password</h5>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label className="form-label">Old Password</label>
                         <input
                             type="password"
+                            name='oldPassword'
+                            onChange={handleInput}
+                            value={data.oldPassword}
                             className="form-control"
                             placeholder="********"
                         />
@@ -82,6 +142,9 @@ const Profiler = () => {
                         <label className="form-label">New Password</label>
                         <input
                             type="password"
+                            name='newPasswordAf'
+                            value={data?.newPasswordAf}
+                            onChange={handleInput}
                             className="form-control"
                             placeholder="********"
                         />
@@ -90,13 +153,22 @@ const Profiler = () => {
                         <label className="form-label">Confirm New Password</label>
                         <input
                             type="password"
+
+                            name='newPassword'
+                            value={data?.newPassword}
+                            onChange={handleInput}
+                            pattern={data?.newPasswordAf}
                             className="form-control"
                             placeholder="********"
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary">
-                        Save Changes
-                    </button>
+                    {isLoading ?
+                        <div className='d-flex fs-5'><FaSpinner className='spinner my-auto' /><div className="ps-2"> Please wait</div></div>
+                        :
+                        <button type="submit" className="btn btn-primary">
+                            Save Changes
+                        </button>
+                    }
                 </form>
             </div>
         </div>

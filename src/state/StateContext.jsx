@@ -111,6 +111,7 @@ const StateContext = ({ children }) => {
       } finally {
         setIsFetching(false)
         toast.dismiss(tst)
+        setTimeout(() => setLoaded(0),400)
       }
     }
   }
@@ -152,7 +153,8 @@ const StateContext = ({ children }) => {
         subCommitees,
         leaders,
         loaded,
-        setLoaded
+        setLoaded,
+        setAmw
       }}
 
     >

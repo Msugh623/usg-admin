@@ -1,7 +1,7 @@
 import React from 'react';
 import {  FaBook, FaRegNewspaper, FaRegComments, FaExchangeAlt } from 'react-icons/fa';
 import { MdEvent, MdOutlineWaves } from 'react-icons/md';
-import { AiOutlineFundProjectionScreen, AiOutlineTeam } from 'react-icons/ai';
+// import { AiOutlineFundProjectionScreen, AiOutlineTeam } from 'react-icons/ai';
 import { BsBarChart, BsFillPeopleFill } from 'react-icons/bs';
 import { useStateContext } from '../../state/StateContext';
 import Delay from '../../components/Delay';

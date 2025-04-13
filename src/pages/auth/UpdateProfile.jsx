@@ -3,6 +3,7 @@ import { requests } from "../../../api/routes";
 import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../state/StateContext";
+import { toast } from "react-toastify";
 
 export default function UpdateProfile() {
     const navigate = useNavigate()
@@ -61,14 +62,14 @@ export default function UpdateProfile() {
                 delete prs.photo
                 return prs
             })())
-            alert('Update Succesful')
-            navigate('/profile')
+            toast.success('Update Succesful')
+            navigate('/dashboard')
             fetchData()
             setTimeout(() => {
                 state.reload()
             }, 300);
         } catch (err) {
-            alert('ERROR: ' + (err.response.data.message || err.response.data.error || err.message))
+            toast.error('ERROR: ' + (err.response.data.message || err.response.data.error || err.message))
         } finally {
             setIsLoading(false)
         }
@@ -173,7 +174,7 @@ export default function UpdateProfile() {
                         <label className="block text-sm font-medium mb-1" htmlFor="state">Profile</label>
                         <input
                             type="File"
-                            id="state"
+                            id="filer"
                             className="w-full px-4 py-2 bg-white text-black border border-gray-300 rounded-lg focus:outline-none"
                             name="state"
                             onChange={handleFile}
@@ -222,6 +223,7 @@ export default function UpdateProfile() {
                         <div className='d-flex fs-5'><FaSpinner className='spinner my-auto' /><div className="ps-2"> Please wait</div></div>
                         : <button
                             type="submit"
+                            id="submit"
                             className="w-full bg-[#123F55] text-white py-3 rounded-lg text-sm font-medium   focus:outline-none"
                         >
                             Submit

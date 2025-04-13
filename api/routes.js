@@ -108,6 +108,21 @@ class Request extends Routes {
     return res.data;
   };
 
+  postAmw = async (state) => {
+    const res = await api.post(this.amw,state);
+    return res.data;
+  };
+
+  putAmw = async (id,state) => {
+    const res = await api.put(this.amw+id,state);
+    return res.data;
+  };
+
+  deleteAmw = async (id) => {
+    const res = await api.delete(this.amw+id);
+    return res.data;
+  };
+
   getAms = async () => {
     const res = await api.get(this.ams);
     return res.data;
