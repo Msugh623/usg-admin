@@ -403,6 +403,24 @@ h6 {
 .slideLeft {
     animation: slideLeft .9s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+@keyframes slideLeftOut {
+    0% {
+        opacity: .7;
+        position: relative;
+        left: 0px;
+    }
+
+    100% {
+        opacity: 1;
+        position: relative;
+        left: -50px;
+    }
+}
+
+
+.slideLeftOut {
+    animation: slideLeftOut .4s linear;
+}
 
 @keyframes slideRight {
     0% {

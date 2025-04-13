@@ -9,12 +9,19 @@ import { FaSpinner } from 'react-icons/fa'
 
 const GetStarted = () => {
   const { setTitle } = useStateContext()
+    const [allow,setAllow] = React.useState(false)
+  const navigate = useNavigate()
   const [p,setP]=useState('mini')
   useEffect(() => {
     setTitle('Get Started')
+    const t = localStorage.logintoken
+    if (t) {
+      return navigate('/dashboard')
+    }
+    setAllow(true)
   }
   , [])
-  return (
+  return (allow?
     <div className=" items-center themebg-grad justify-center p-0 px-0 min-h-[100vh]">
       <Navbar />
       <div className="flex flex-col md:flex-row mx-auto items-center max-w-4xl w-[95vw] w-full p-8 rounded-2xl" style={{
@@ -44,7 +51,7 @@ const GetStarted = () => {
         </Delay>
 
       </div>
-    </div>
+    </div>:null
   )
 }
 
