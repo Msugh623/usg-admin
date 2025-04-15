@@ -77,7 +77,7 @@ const AMW = () => {
                 </div>
             <div className="chap">
             {prsAmw.map((amw, index) => (
-                <div className={`p-2 py-4 ${index%2==0&&'bg-[#123F5520]'}`} key={'' + amw?.name + amw?.category}>
+                <div className={`p-2 py-4 ${index%2==0&&'bg-[#123F5520]'}`} key={'' + amw?.name + amw?.cateogry+index}>
                     <div className="d-flex ">
                         <h4 className='w-[50%] d-flex min-w-[50%] md:w-[35%] md:min-w-[35%]'>
                            <img src={amw?.image} alt="" className='me-2 w-[50px] h-[50px] my-auto rounded' />

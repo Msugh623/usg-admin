@@ -3,26 +3,26 @@ import { useStateContext } from '../../state/StateContext'
 import Delay from '../../components/Delay'
 import { BiSearch, BiX } from 'react-icons/bi'
 import { FaTrash } from 'react-icons/fa'
+import { toast } from 'react-toastify'
+import { requests } from '../../../api/routes'
 
 const Chapters = () => {
-    const { chapters, setModal } = useStateContext()
+    const { chapters, setModal ,setChapters} = useStateContext()
     
-        const [prsChapters, setChapters] = useState([])
+        const [prsChapters, setChapterss] = useState([])
         const [chapKey, setChapKey] = useState('')
             const [searchChapters, setSearchChapters] = useState(false)
         
     useEffect(() => {
-        setChapters(chapters.filter(a => { 
+        setChapterss(chapters.filter(a => { 
                   return ( (a?.name || '').toLowerCase().includes(chapKey.toLowerCase()) )
     }))
         }, [chapKey, chapters])
   return (
-      <div className="col-md-12 container row pt-4" id='alumini-making-waves'>
+      <div className="row  pt-4" id='alumini-making-waves'>
           <h2 className='px-4'>Chapters</h2>
-    <div className="container noShade row mx-auto">
+    <div className="noShade  mx-4">
         <div className="pt-4"  style={{
-            maxHeight: '800px',
-            overflowY: 'auto'
         }}>
             <div className="d-flex bg-light p-3" style={{
                     position: 'sticky',
@@ -51,7 +51,7 @@ const Chapters = () => {
                           }
                          
                       </div>
-                     {!searchChapters&& <div className="ms-auto slideLeft themebg rounded p-2">Add New</div>}
+                     {!searchChapters&& <div className="ms-auto slideLeft themebg rounded p-2" onClick={()=>setModal(<Adder/>)}>Add New</div>}
             </div>
 
             {/* Chapter Card */}
@@ -82,9 +82,24 @@ const Chapters = () => {
                             <a href={chapter?.whatsappLink} className="text-dark no-dec pe-2">{ chapter?.whatsappLink}</a>
                         </div>
                         <div className=" ms-auto d-flex ps-3">
-                            <div className="ms-auto slideLeft border border-dark rounded p-2">Edit</div>
+                            <div className="ms-auto slideLeft border border-dark rounded p-2" onClick={() => setModal(<Editor editData={chapter} />)}>Edit</div>
                             <div className="m-1"></div>
-                        <div className="ms-auto slideLeft border border-dark rounded p-2 pt-3"><FaTrash className='icon'/></div>
+                        <div className="ms-auto slideLeft border border-dark rounded p-2 pt-3"onClick={() => {
+                                confirm('Do you want to delete this State Chapter?') &&
+                                    confirm('This Action Can not be undone') &&
+                                    (async () => {
+                                    const tst = toast.loading('Deleting...')
+                                    try {
+                                        await requests.deleteChapter(chapter._id)
+                                        setChapters((await requests.getChapters()).data);
+                                        toast.success('Deleted successfully');
+                                    } catch (error) {
+                                        toast.error(`ERROR: ${error?.response?.data?.message || error?.message}`)
+                                    }finally {
+                                        toast.dismiss(tst)
+                                    }
+                                })()
+                        }}><FaTrash className='icon'/></div>
                         </div>
                     </div>
                 </div>
@@ -114,3 +129,163 @@ const Chapters = () => {
 }
 
 export default Chapters
+
+
+function Editor({editData}) {
+    const {setModal,setChapters}=useStateContext()
+    const [data, setData] = useState({
+      ...editData
+    })
+
+    function handleChange(e) {
+        const { name, value } = e.target
+        setData({
+            ...data,
+            [name]: value
+        })
+    }
+
+    function handleFile(e) {
+        const {  files } = e.target
+        setData({
+            ...data,
+            ['image']: files[0]
+        })
+    }
+
+   async function onSubmit() {
+       const tst = toast.loading('Updating...')
+       const fd = new FormData()
+       const keys = Object.keys(data)
+       try {
+           for (let item of keys) {
+               if (data[item]) {
+                   fd.append(item, data[item])
+                }
+           };
+           const _ = await requests.putChapter(editData?._id,fd);
+           setChapters((await requests.getChapters()).data);
+           toast.success('Update successful');
+           setModal('');
+        } catch (error) {
+            toast.error(`ERROR: ${error?.response?.data?.message || error?.message}`)
+       } finally {
+              toast.dismiss(tst)
+        }
+    }
+    return (
+        <div className="p-4 bg-white rounded-lg w-[400px] mx-auto">
+            <h4>Update Chapter</h4>
+                <>
+                <div className="text-center mb-4">
+                {/* <img
+                    src={data?.image}
+                    alt="Profile"
+                    className="w-[100px] h-[100px] rounded-full object-cover mx-auto mb-3"
+                /> */}
+                
+            </div>
+            <div className="text-center mb-4">
+                {/* <h5 className="text-gray-700">{data?.name} </h5> */}
+            </div>
+                    <div className="mb-4">
+                    {/* <div className="mb-3">
+                            <input type="file" accept='img/*,image/*' onChange={handleFile} className="form-control" placeholder='Title'/>
+                        </div> */}
+                        <div className="mb-3">
+                            <input type="text" onChange={handleChange} name='name' value={data.name} className="form-control" placeholder='Chapter Name'/>
+                        </div>
+                <input type='url'
+                    className="form-control w-full border rounded p-2"
+                    placeholder="Chapters's Whatsapp Link"
+                            rows="4"
+                            onChange={handleChange} name='whatsappLink' value={data.whatsappLink}
+                ></input>
+            </div>
+            <div className="d-flex justify-content-between">
+                <button className="btn btn-outline-secondary" onClick={()=>setModal('')}>Cancel</button>
+                <button className="btn btn-primary" onClick={onSubmit}>Update</button>
+            </div>
+                </> 
+        </div>
+    )
+}
+
+function Adder() {
+    const {setModal,setChapters}=useStateContext()
+    const [data, setData] = useState({
+        name: '',
+        whatsappLink: '',
+    })
+
+    function handleChange(e) {
+        const { name, value } = e.target
+        setData({
+            ...data,
+            [name]: value
+        })
+    }
+
+    function handleFile(e) {
+        const {  files } = e.target
+        setData({
+            ...data,
+            ['image']: files[0]
+        })
+    }
+
+   async function onSubmit() {
+       const tst = toast.loading('Adding...')
+       const fd = new FormData()
+       const keys = Object.keys(data)
+       try {
+           for (let item of keys) {
+               if (data[item]) {
+                   fd.append(item, data[item])
+                }
+           };
+           const _ = await requests.postChapter(fd);
+           setChapters((await requests.getChapters()).data);
+           toast.success('Chapter Story added successfully');
+           setModal('');
+        } catch (error) {
+            toast.error(`ERROR: ${error?.response?.data?.message || error?.message}`)
+       } finally {
+              toast.dismiss(tst)
+        }
+    }
+
+    return (
+        <div className="p-4 bg-white rounded-lg w-[400px] mx-auto">
+            <h4>Add Chapter</h4>
+                <>
+                <div className="text-center mb-4">
+                {/* <img
+                    src={data?.image}
+                    alt="Profile"
+                    className="w-[100px] h-[100px] rounded-full object-cover mx-auto mb-3"
+                /> */}
+                
+            </div>
+            <div className="text-center mb-4">
+                {/* <h5 className="text-gray-700">{data?.name} </h5> */}
+            </div>
+                    <div className="mb-4">
+                        <div className="mb-3">
+                            <input type="text" onChange={handleChange} name='name' value={data.name} className="form-control" placeholder='Name'/>
+                        </div>
+                <input type='url'
+                    className="form-control w-full border rounded p-2"
+                    placeholder="Whatsapp Link" 
+                            onChange={handleChange} name='whatsappLink' value={data.whatsappLink}
+                ></input>
+            </div>
+            <div className="d-flex justify-content-between">
+                <button className="btn btn-outline-secondary" onClick={()=>setModal('')}>Cancel</button>
+                <button className="btn btn-primary" onClick={onSubmit}>Save</button>
+            </div>
+                </> 
+        </div>
+    );
+}
+

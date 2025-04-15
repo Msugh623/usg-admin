@@ -150,11 +150,15 @@ const StateContext = ({ children }) => {
         amw,
         about,
         ams,
+        setAms,
         subCommitees,
         leaders,
         loaded,
         setLoaded,
-        setAmw
+        setAmw,
+        setImpact,
+        setChapters,
+        setResources
       }}
 
     >

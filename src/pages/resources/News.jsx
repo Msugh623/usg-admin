@@ -17,7 +17,7 @@ const News = () => {
     }))
         }, [key, news])
   return (
-      <div className="col-md-12 container row pt-4" id='alumini-making-waves'>
+      <div className="max-w-100 row pt-4" id='alumini-making-waves'>
           <h2 className='px-4'>News</h2>
     <div className="container noShade row mx-auto">
         <div className="pt-4"  style={{

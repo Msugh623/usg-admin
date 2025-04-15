@@ -73,6 +73,21 @@ class Request extends Routes {
     return res.data;
   };
 
+  postChapter = async (state) => {
+    const res = await api.post(this.chapters,state);
+    return res.data;
+  };
+
+  putChapter = async (id,state) => {
+    const res = await api.put(this.chapters+id,state);
+    return res.data;
+  };
+
+  deleteChapter = async (id) => {
+    const res = await api.delete(this.chapters+id);
+    return res.data;
+  };
+
   getNews = async () => {
     const res = await api.get(this.news);
     return res.data;
@@ -80,6 +95,21 @@ class Request extends Routes {
 
   getImpact = async () => {
     const res = await api.get(this.impact);
+    return res.data;
+  };
+
+  postImpact = async (state) => {
+    const res = await api.post(this.impact,state);
+    return res.data;
+  };
+
+  putImpact = async (id,state) => {
+    const res = await api.put(this.impact+id,state);
+    return res.data;
+  };
+
+  deleteImpact = async (id) => {
+    const res = await api.delete(this.impact+id);
     return res.data;
   };
 
@@ -128,8 +158,21 @@ class Request extends Routes {
     return res.data;
   };
 
+  putSpotlight = async (id,state) => {
+    const res = await api.put(this.ams+'/'+id,state);
+    return res.data;
+  };
+
   getResources = async () => {
     const res = await api.get(this.resources);
+    return res.data;
+  };
+  postResource = async (state) => {
+    const res = await api.post(this.resources,state);
+    return res.data;
+  };
+  deleteResource = async (id) => {
+    const res = await api.delete(this.resources+id);
     return res.data;
   };
 

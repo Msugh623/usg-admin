@@ -50,7 +50,9 @@ const DashAppBody = () => {
     onresize = () => {
       window.innerWidth>768?setNavIsHidden(false):setNavIsHidden(true)
     }
-    onresize()
+    setTimeout(() => {
+      onresize()
+    }, 500);
     document.title = 'USGEAAN Admin - Dashboard'
     const t = localStorage.logintoken
     if (!t) {
@@ -60,9 +62,6 @@ const DashAppBody = () => {
   }, [])
   return (allow?
     <div className='' style={{
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      overflow: 'hidden',
     }}>
       <div className="fixed-top">
         <div className={`mt-4 ms-3 d-lg-none pt-2`}>
@@ -71,12 +70,12 @@ const DashAppBody = () => {
           </div>
         </div>
       </div>
-      <div className="d-flex max-h-[100vh] o-hidden">
+      <div className="d-flex">
         <div id='sb'>
           <Sidebar />
         </div>
-        <div className="max-h-[100vh] w-100 overflow-y-auto">
-        <Outlet/>
+        <div className="">
+        <Outlet />
         </div>
       </div>
       {modal &&
