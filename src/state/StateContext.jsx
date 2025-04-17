@@ -32,12 +32,14 @@ const StateContext = ({ children }) => {
   const [loaded,setLoaded]=useState(0)
 
   async function fetchData() {
-    const tst = toast.loading(<Loader />, {
+    const tst = localStorage.getItem('logintoken')&& toast.loading(<Loader />, {
       progress:loaded/100
     })
     setIsFetching(true)
     if (localStorage.getItem('logintoken')) {
       api.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('logintoken')
+    } else {
+      return
     }
     try {
       const resUsr = await requests.getAuthState()
@@ -161,6 +163,7 @@ const StateContext = ({ children }) => {
         setResources,
         setNews,
         setEvents,
+        setAbout,
       }}
     >
       {children}

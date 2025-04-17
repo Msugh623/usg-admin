@@ -11,7 +11,7 @@ const GetStarted = () => {
   const { setTitle } = useStateContext()
     const [allow,setAllow] = React.useState(false)
   const navigate = useNavigate()
-  const [p,setP]=useState('mini')
+  const [p,setP]=useState('max')
   useEffect(() => {
     setTitle('Get Started')
     const t = localStorage.logintoken

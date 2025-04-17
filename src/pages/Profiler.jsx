@@ -80,7 +80,7 @@ const Profiler = () => {
     }
 
     return (
-        <div className="mx-auto p-6 bg-white border rounded-lg my-3 my-sm-5 w-[80vw] max-w-[900px] shadow-md">
+        <div className="mx-auto slideUp p-6 bg-white border rounded-lg my-3 my-sm-5 w-[80vw] max-w-[900px] shadow-md">
             <div className="text-center mb-5">
                 <img
                     src={user?.photo}

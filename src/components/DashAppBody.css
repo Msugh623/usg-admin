@@ -1,0 +1,55 @@
+.dash-app-body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar {
+  transition: transform 0.3s ease-in-out;
+}
+
+.slideLeftOut {
+  transform: translateX(-100%);
+}
+
+.slideRight {
+  transform: translateX(0);
+}
+
+.d-none {
+  display: none !important;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.modal-overlay {
+  background-color: rgba(14, 14, 14, 0.3);
+}
+
+.modal-content {
+  max-height: 85vh;
+  overflow: auto;
+  outline: none;
+  border: none;
+}
+
+.modal-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.mobile-nav-toggle button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}

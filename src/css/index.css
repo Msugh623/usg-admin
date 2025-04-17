@@ -422,6 +422,21 @@ h6 {
     animation: slideLeftOut .4s linear;
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.4;
+    }
+}
+
+
+.fadeOut {
+    animation: fadeOut .3s linear;
+}
+
 @keyframes slideRight {
     0% {
         opacity: .7;

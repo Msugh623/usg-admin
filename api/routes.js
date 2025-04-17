@@ -209,7 +209,10 @@ class Request extends Routes {
     const res = await api.get(this.aboutUs);
     return res.data;
   };
-
+  putAbout = async (id, state) => {
+    const res = await api.put(this.aboutUs + "/" + id, state);
+    return res.data;
+  };
   getLeaders = async () => {
     const res = await api.get(this.leaders);
     return res.data;
