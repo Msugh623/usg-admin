@@ -40,7 +40,7 @@ const Resources = () => {
           </button>
         </div>
       </div>
-      <div className="d-flex mb-8 " style={{
+      <div className="d-flex mb-8" style={{
                         overflow: 'auto',
                         maxWidth: '100vw'
                     }}>
@@ -68,7 +68,9 @@ const Resources = () => {
             <FaTrash/>
           </button>
                 <div className="w-16 h-16 bg-red-200 rounded mb-2">
-                    <img src={resource?.imageUrl} alt={resource?.name} className="w-full h-full object-cover rounded" />
+                    <Delay delay={300}>
+                      <img src={resource?.imageUrl} alt={resource?.name} className="w-full h-full object-cover rounded" />
+                    </Delay>
             </div>
                     <p className="text-sm font-medium px-2">{resource?.name}</p>
                     

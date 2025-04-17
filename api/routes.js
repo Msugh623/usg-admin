@@ -78,18 +78,32 @@ class Request extends Routes {
     return res.data;
   };
 
-  putChapter = async (id,state) => {
-    const res = await api.put(this.chapters+id,state);
+  putChapter = async (id, state) => {
+    const res = await api.put(this.chapters + "/" + id, state);
     return res.data;
   };
 
   deleteChapter = async (id) => {
-    const res = await api.delete(this.chapters+id);
+    const res = await api.delete(this.chapters + "/" + id);
     return res.data;
   };
 
   getNews = async () => {
     const res = await api.get(this.news);
+    return res.data;
+  };
+  postNews = async (state) => {
+    const res = await api.post(this.news, state);
+    return res.data;
+  };
+
+  putNews = async (id, state) => {
+    const res = await api.put(this.news + "/" + id, state);
+    return res.data;
+  };
+
+  deleteNews = async (id) => {
+    const res = await api.delete(this.news + "/" + id);
     return res.data;
   };
 
@@ -99,17 +113,17 @@ class Request extends Routes {
   };
 
   postImpact = async (state) => {
-    const res = await api.post(this.impact,state);
+    const res = await api.post(this.impact, state);
     return res.data;
   };
 
-  putImpact = async (id,state) => {
-    const res = await api.put(this.impact+id,state);
+  putImpact = async (id, state) => {
+    const res = await api.put(this.impact + "/" + id, state);
     return res.data;
   };
 
   deleteImpact = async (id) => {
-    const res = await api.delete(this.impact+id);
+    const res = await api.delete(this.impact + "/" + id);
     return res.data;
   };
 
@@ -143,13 +157,13 @@ class Request extends Routes {
     return res.data;
   };
 
-  putAmw = async (id,state) => {
-    const res = await api.put(this.amw+id,state);
+  putAmw = async (id, state) => {
+    const res = await api.put(this.amw + "/" + id, state);
     return res.data;
   };
 
   deleteAmw = async (id) => {
-    const res = await api.delete(this.amw+id);
+    const res = await api.delete(this.amw + "/" + id);
     return res.data;
   };
 
@@ -172,7 +186,7 @@ class Request extends Routes {
     return res.data;
   };
   deleteResource = async (id) => {
-    const res = await api.delete(this.resources+id);
+    const res = await api.delete(this.resources + "/" + id);
     return res.data;
   };
 

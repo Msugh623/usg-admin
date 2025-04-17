@@ -44,7 +44,7 @@ const StateContext = ({ children }) => {
       setUser(resUsr?.user)
       setLoaded(prev=>(prev+4.7))
     } catch (err) {
-      console.log("ERROR: " + err.message)
+      console.log("ERROR: " + (err.message)||err)
     } finally {
       try {
         const resMedia = await requests.getIMedia()
@@ -107,7 +107,7 @@ const StateContext = ({ children }) => {
         setLoaded(prev=>(prev+4.7))
         setSubCommitees(resSubCommitees?.data)
       } catch (err) {
-        toast.error("ERROR: " + err?.response?.data?.message || err?.message||eer)
+        toast.error("ERROR: " + (err?.response?.data?.message || err?.message||err))
       } finally {
         setIsFetching(false)
         toast.dismiss(tst)
@@ -158,13 +158,13 @@ const StateContext = ({ children }) => {
         setAmw,
         setImpact,
         setChapters,
-        setResources
+        setResources,
+        setNews,
       }}
-
     >
       {children}
     </context.Provider>
-  )
+  );
 }
 
 export default StateContext
