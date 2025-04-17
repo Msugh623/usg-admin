@@ -171,15 +171,15 @@ const LoginWithEmail = ({setter}) => {
                         </button>
                     }
                 </form>
-                <button className="mt-4 flex items-center justify-center themebg w-full px-4 py-2 border text-lightAf rounded-lg text-gray-700 shadow-sm text-sm font-medium" onClick={() => {
+                {/* <button className="mt-4 flex items-center justify-center themebg w-full px-4 py-2 border text-lightAf rounded-lg text-gray-700 shadow-sm text-sm font-medium" onClick={() => {
                     requests.useGoogleAuth()
                 }}>
                     <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google Logo" className="w-5 h-5 mr-2" />
                     Sign in with Google
-                </button>
-                <p className="text-center text-sm mt-4" onClick={()=>setter('mini')}>
+                </button> */}
+                {/* <p className="text-center text-sm mt-4" onClick={()=>setter('mini')}>
                     Discard session
-                </p>
+                </p> */}
             </div>
     )
 }
