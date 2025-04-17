@@ -33,7 +33,7 @@ class Routes {
 class Request extends Routes {
   usrlogin = async (state) => {
     const res = await api.post(this.login, {
-      ...state
+      ...state,
     });
     return res.data;
   };
@@ -49,8 +49,8 @@ class Request extends Routes {
   };
 
   useGoogleAuth = async () => {
-    location.href = usgOrigin+path+this.googleLogin
-    return null
+    location.href = usgOrigin + path + this.googleLogin;
+    return null;
   };
 
   usrUpdate = async (state) => {
@@ -74,7 +74,7 @@ class Request extends Routes {
   };
 
   postChapter = async (state) => {
-    const res = await api.post(this.chapters,state);
+    const res = await api.post(this.chapters, state);
     return res.data;
   };
 
@@ -132,8 +132,23 @@ class Request extends Routes {
     return res.data;
   };
 
+  postEvent = async (state) => {
+    const res = await api.post(this.events, state);
+    return res.data;
+  };
+
+  putEvent = async (id, state) => {
+    const res = await api.put(this.events + "/" + id, state);
+    return res.data;
+  };
+
+  deleteEvent = async (id) => {
+    const res = await api.delete(this.events + "/" + id);
+    return res.data;
+  };
+
   getProgram = async (id) => {
-    const res = await api.get((this.programmes) + '/' + id);
+    const res = await api.get(this.programmes + "/" + id);
     return res.data;
   };
 
@@ -153,7 +168,7 @@ class Request extends Routes {
   };
 
   postAmw = async (state) => {
-    const res = await api.post(this.amw,state);
+    const res = await api.post(this.amw, state);
     return res.data;
   };
 
@@ -172,8 +187,8 @@ class Request extends Routes {
     return res.data;
   };
 
-  putSpotlight = async (id,state) => {
-    const res = await api.put(this.ams+'/'+id,state);
+  putSpotlight = async (id, state) => {
+    const res = await api.put(this.ams + "/" + id, state);
     return res.data;
   };
 
@@ -182,7 +197,7 @@ class Request extends Routes {
     return res.data;
   };
   postResource = async (state) => {
-    const res = await api.post(this.resources,state);
+    const res = await api.post(this.resources, state);
     return res.data;
   };
   deleteResource = async (id) => {
@@ -212,23 +227,23 @@ class Request extends Routes {
 
   usrLogout = async () => {
     const res = await api.get(this.logout);
-    localStorage.removeItem('logintoken')
-    location.href = location.origin
+    localStorage.removeItem("logintoken");
+    location.href = location.origin;
     return res.data;
   };
 
   sub = async (email) => {
     const res = await api.post(this.eSub, {
-      email
-    })
-    return res.data
-  }
+      email,
+    });
+    return res.data;
+  };
   send = async (state) => {
     const res = await api.post(this.contact, {
-      ...state
-    })
-    return res.data
-  }
+      ...state,
+    });
+    return res.data;
+  };
 }
 
 export const routes = new Routes();
