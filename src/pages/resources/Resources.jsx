@@ -120,7 +120,7 @@ function Adder() {
     const [data, setData] = useState({
         name: '',
         type: '',
-      image: "",
+      imageFile: "",
         pdfFile: ""
     })
 
@@ -191,7 +191,7 @@ function Adder() {
             </div>
             <div className="mb-3">
               <div>Thumbnail Image</div>
-                <input type="file" accept='img/*,image/*' name='image' onChange={handleFile} className="form-control" placeholder='Title'/>
+                <input type="file" accept='img/*,image/*' name='imageFile' onChange={handleFile} className="form-control" placeholder='Title'/>
             </div>
             <div className="mb-3">
               <div>Document</div>
