@@ -113,16 +113,7 @@ const Sidebar = () => {
         >
           Events
         </Link>
-        <Link
-          to="/dashboard/about"
-          className={`${
-            location.pathname.includes("/dashboard/about")
-              ? "bg-light themetxt p-3 no-dec"
-              : "nav-link text-white py-3 hover:bg-gray-700 rounded"
-          }`}
-        >
-          About
-        </Link>
+       
       </nav>
     </div>
   );
