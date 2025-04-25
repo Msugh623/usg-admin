@@ -53,8 +53,13 @@ class Request extends Routes {
     return null;
   };
 
-  usrUpdate = async (state) => {
-    const res = await api.put(this.updateusr, state);
+  usrUpdate = async (state, id) => {
+    const res = await api.put(this.updateusr + (id ? "/" + id : ""), state);
+    return res.data;
+  };
+
+  tgExpert = async (id,state) => {
+    const res = await api.put("/user/expert-toggle" + (id ? "/" + id : ""),state);
     return res.data;
   };
 

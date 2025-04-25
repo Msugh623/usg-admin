@@ -44,6 +44,16 @@ const Sidebar = () => {
           Alumni Making Waves
         </Link>
         <Link
+          to="/dashboard/expert"
+          className={`${
+            location.pathname.includes("/dashboard/expert")
+              ? "bg-light themetxt p-3 no-dec"
+              : "nav-link text-white py-3 hover:bg-gray-700 rounded"
+          }`}
+        >
+          Expert
+        </Link>
+        <Link
           to="/dashboard/impact-stories"
           className={`${
             location.pathname.includes("/dashboard/impact-stories")

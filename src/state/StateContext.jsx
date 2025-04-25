@@ -164,6 +164,7 @@ const StateContext = ({ children }) => {
         setNews,
         setEvents,
         setAbout,
+        setUsers,
       }}
     >
       {children}
