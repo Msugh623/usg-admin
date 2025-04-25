@@ -47,9 +47,9 @@ const Navbar = (props) => {
                             <Link to={'/dashboard'} className={`me-1 rounded btn ${props?.hasBg ? 'text-light shadow-sm acbg' : 'text-dark'}`} onClick={() => window.scroll({ top: 0 })}>Admin Portal <br /> <hr className='m-0 mt-1 w-75 mx-auto border-2' style={{
                                 opacity:'1'
                             }} /> </Link>
-                            <Link to={''} style={{opacity:'0.7'}} className={`me-1 text-muted text-grey-400 rounded btn  ${props?.hasBg ? 'text-muted shadow-sm acbg' : 'text-muted    '}`}>Main Website<br /> <hr className='m-0 mt-1 w-75 mx-auto border-2' style={{
+                            <a href={'https://usgeaan.onrender.com/'} style={{opacity:'0.7'}} className={`me-1 text-muted text-grey-400 rounded btn  ${props?.hasBg ? 'text-muted shadow-sm acbg' : 'text-muted    '}`}>Main Website<br /> <hr className='m-0 mt-1 w-75 mx-auto border-2' style={{
                                 opacity:'0'
-                            }} ></hr></Link>
+                            }} ></hr></a>
                         </div>
                     }
                 </div>
