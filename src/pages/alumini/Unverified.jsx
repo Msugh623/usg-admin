@@ -117,7 +117,7 @@ const Unverified   = () => {
             {uv.map((user, index) => (
               <div
                 className={`p-2 py-4 ${index % 2 == 0 && "bg-[#123F5520]"}`}
-                key={"" + user?.fullname + user?.cateogry + index}
+                key={"" + user?.fullname + user?.cateogry + user?._id}
               >
                 <div className="d-flex ">
                   <h4 className="w-[50%] d-flex min-w-[50%] md:w-[35%] md:min-w-[35%]">
@@ -139,11 +139,8 @@ const Unverified   = () => {
                             const tst = toast.loading("Verifying...");
                             try {
                               const _ = await requests.verifyUser(user._id);
-                               setUv((prev) =>
-                                 prev.filter((usr) => {
-                                   usr.id !== user._id;
-                                 })
-                               );
+                              const resUv = await requests.getUnverified();
+                              setUv(resUv?.data);
                               toast.success("Dissmis Succesful");
                             } catch (err) {
                               toast.error(

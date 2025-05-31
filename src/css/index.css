@@ -2570,3 +2570,25 @@ h3 {
 h4 {
     font-size: large !important;
 }
+
+button:hover, .btn:hover,
+.ms-auto.slideLeft.border.border-dark.rounded.p-2:hover,
+.ms-auto.slideLeft.themebg.rounded.p-2:hover
+{
+    scale: 1.02 !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 2px .25rem rgba(0, 0, 0, 0.175) !important;
+    outline: 1px solid #123F55 !important;
+}
+
+button, .btn,
+.ms-auto.slideLeft.border.border-dark.rounded.p-2,
+.ms-auto.slideLeft.themebg.rounded.p-2{
+    transition: all,.3s !important ;
+}
+
+button:active, .btn:active,
+.ms-auto.slideLeft.border.border-dark.rounded.p-2:active,
+.ms-auto.slideLeft.themebg.rounded.p-2:active{
+    scale: 0.9 !important;
+}
