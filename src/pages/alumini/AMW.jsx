@@ -29,7 +29,7 @@ const AMW = () => {
         }}>
             <div className="d-flex bg-light p-3" style={{
                     position: 'sticky',
-                    top:'0px'
+                    top:'-10px'
                 }}>
                 <div className={`d-flex my-auto transition cursor-[pointer] hover:rounded hover:shadow-lg hover:p-1 par ${searchAmw && 'w-100'}`} onClick={() => { setSearchAmw(prev => !prev); setChapKey('') }}>
                     <BiSearch className='fs-5 my-auto' /> <span className="px-1 ">Search</span> 
@@ -60,7 +60,7 @@ const AMW = () => {
             {/* Chapter Card */}
             <div className="py-4 bg-white"style={{
                     position: 'sticky',
-                    top:'50px'
+                    top:'40px'
                 }}>
                     <div className="d-flex px-3">
                         <div className=' text-muted w-[50%] min-w-[50%] md:w-[35%] md:min-w-[35%]'>

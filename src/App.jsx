@@ -18,6 +18,7 @@ import Events from "./pages/resources/Events";
 import About from "./pages/resources/About";
 import { ToastContainer } from "react-toastify";
 import Expert from "./pages/alumini/Expert";
+import Unverified from "./pages/alumini/Unverified";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="events" element={<Events />} />
             <Route path="about" element={<About />} />
             <Route path="expert" element={<Expert />} />
+            <Route path="unverified" element={<Unverified />} />
 
             {/* 404 handler for /dashboard */}
             <Route

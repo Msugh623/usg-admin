@@ -2,32 +2,34 @@ import { api,usgOrigin,path } from "./api";
 
 class Routes {
   // Auth
-  login = "/auth/login"
-  logout='/auth/logout'
-  sessionLogin = "/auth/session-login"
-  googleLogin='/auth/google'
-  authState = '/auth/loggedInUser'
+  login = "/auth/login";
+  logout = "/auth/logout";
+  sessionLogin = "/auth/session-login";
+  googleLogin = "/auth/google";
+  authState = "/auth/loggedInUser";
 
   // User
   users = "/user/all-users";
-  signup = '/user/signup'
-  updateusr = '/user/update'
+  signup = "/user/signup";
+  updateusr = "/user/update";
+  unverified = "/user/all-unverified-users";
+  verify = "/user/verify-user";
 
   programmes = "/programme";
-  chapters = '/chapter'
-  resources = '/resources'
-  testimonies='/testimonies'
-  news = '/news'
-  events = '/event'
-  impact = '/impact'
-  leaders = '/leaders'
-  subcommittee = '/subcommittee'
-  amw = '/amw'
-  ams='/alumni-spot'
-  aboutUs = '/aboutus'
-  imedia='/gallery'
-  eSub = '/user/email-sub';
-  contact = '/user/contact'
+  chapters = "/chapter";
+  resources = "/resources";
+  testimonies = "/testimonies";
+  news = "/news";
+  events = "/event";
+  impact = "/impact";
+  leaders = "/leaders";
+  subcommittee = "/subcommittee";
+  amw = "/amw";
+  ams = "/alumni-spot";
+  aboutUs = "/aboutus";
+  imedia = "/gallery";
+  eSub = "/user/email-sub";
+  contact = "/user/contact";
 }
 
 class Request extends Routes {
@@ -58,8 +60,21 @@ class Request extends Routes {
     return res.data;
   };
 
-  tgExpert = async (id,state) => {
-    const res = await api.put("/user/expert-toggle" + (id ? "/" + id : ""),state);
+  getUnverified = async () => {
+    const res = await api.get(this.unverified);
+    return res.data;
+  };
+
+  verifyUser = async (id) => {
+    const res = await api.put(this.verify + "/" + id);
+    return res.data;
+  };
+
+  tgExpert = async (id, state) => {
+    const res = await api.put(
+      "/user/expert-toggle" + (id ? "/" + id : ""),
+      state
+    );
     return res.data;
   };
 

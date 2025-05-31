@@ -32,7 +32,7 @@ export default function Resources() {
                     }}>
                         <div className="mx-auto d-flex flex-row">
                         {categories.map((category, index) => (
-                            <button key={index} className={`d-block transition small px-6 py-2 border border-gray-300 text-gray-700 ${category.toLowerCase() == theCategory.toLowerCase() ? 'bg-[#0f3d5f] text-white' : 'bg-white hover:bg-gray-200'} min-w-[${category.length*50}px]`} onClick={() => {
+                            <button key={index} className={`d-block transition small px-6 py-2 border border-gray-300 text-gray-700 ${category.toLowerCase() == theCategory.toLowerCase() ? 'bg-[#0f3d5f] text-white' : 'bg-white hover:bg-gray-200'}`} onClick={() => {
                                 setTheCategory(category.toLowerCase())
                             }}>{category}</button>
                         ))}

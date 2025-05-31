@@ -147,7 +147,7 @@ useEffect(() => {
                 }}>
                     <div className="d-flex bg-light p-3" style={{
                             position: 'sticky',
-                            top:'0px'
+                            top:'-10px'
                         }}>
                         <div className={`d-flex my-auto transition cursor-[pointer] hover:rounded hover:shadow-lg hover:p-1 par ${searchChapter && 'w-100'}`} onClick={() => { setSearchChapters(prev => !prev); setChapKey('') }}>
                             <BiSearch className='fs-5 my-auto' /> <span className="px-1 ">Search</span>

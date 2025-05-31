@@ -163,7 +163,7 @@ function Adder() {
 
     return (
         <div className="p-4 bg-white rounded-lg w-[400px] mx-auto">
-            <h4>Add Impact Story</h4>
+            <h4>Add Resource</h4>
                 <>
                 <div className="text-center mb-4">
                 {/* <img
