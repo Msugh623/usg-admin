@@ -106,7 +106,7 @@ const Unverified   = () => {
                 Name
               </div>
               <div className="me-auto">
-                <a className="text-dark no-dec text-muted pe-2">Category</a>
+                <a className="text-dark no-dec text-muted pe-2"></a>
               </div>
               <div className="ms-auto">
                 <a className="text-dark no-dec text-muted pe-2">Action</a>
