@@ -82,7 +82,7 @@ const News = () => {
             </div>
             {!search && (
               <div
-                className="ms-auto slideLeft themebg rounded p-2"
+                className="ms-auto slideLeft themebg rounded p-2 cursor-pointer"
                 onClick={() => setModal(<Adder />)}
               >
                 Add New
@@ -144,7 +144,7 @@ const News = () => {
                       </div>
                       <div className="m-1"></div>
                       <div
-                        className="ms-auto slideLeft border border-dark rounded p-2 pt-3"
+                        className="ms-auto slideLeft border border-dark rounded p-2 pt-3 cursor-pointer"
                         onClick={() => {
                           confirm(
                             "Do you want to delete this Headline Story?"

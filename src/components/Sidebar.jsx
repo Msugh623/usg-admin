@@ -122,7 +122,7 @@ const Sidebar = () => {
               : "nav-link text-white py-3 hover:bg-gray-700 rounded"
           }`}
         >
-          Unverified
+          Verify Alumni
         </Link>       
       </nav>
     </div>

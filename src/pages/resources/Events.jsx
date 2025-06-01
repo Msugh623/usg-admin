@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useStateContext } from '../../state/StateContext'
-import Delay from '../../components/Delay'
-import { BiSearch, BiX } from 'react-icons/bi'
-import { FaTrash } from 'react-icons/fa'
+import React, { useEffect, useState } from "react";
+import { useStateContext } from "../../state/StateContext";
+import Delay from "../../components/Delay";
+import { BiSearch, BiX } from "react-icons/bi";
+import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { requests } from '../../../api/routes'
+import { requests } from "../../../api/routes";
 
 const Events = () => {
   const { events, setModal, isFetching, setEvents } = useStateContext();
@@ -83,7 +83,7 @@ const Events = () => {
             </div>
             {!search && (
               <div
-                className="ms-auto slideLeft themebg rounded p-2"
+                className="ms-auto slideLeft themebg rounded p-2 cursor-pointer"
                 onClick={() => setModal(<Adder />)}
               >
                 Add New
@@ -118,6 +118,13 @@ const Events = () => {
                 key={`${ev?.name}${ev?.whatsappLink}${index}`}
               >
                 <div className="flex items-center space-x-4">
+                  <div className="pt-3 pe-3">
+                    <img
+                      src={ev?.image}
+                      alt={ev?.title}
+                      className="min-w-[70px] my-auto max-w-[80px] object-cover mb-4"
+                    />
+                  </div>
                   <div>
                     <h4 className="text-sm font-medium text-gray-800">
                       {ev.name.slice(0, 70)}
@@ -201,20 +208,30 @@ function Editor({ editData }) {
     });
   }
 
+  function handleFile(e) {
+    const { files } = e.target;
+    setData({
+      ...data,
+      ["image"]: files[0],
+    });
+  }
 
   async function onSubmit() {
     const tst = toast.loading("Updating...");
-    let fd = {}
-    const keys = Object.keys(data);
+    const fd = new FormData();
     try {
-      for (let item of keys) {
-        if (data[item]) {
-          fd = {
-            ...data,
-            [item]: data[item],
-          };
-        }
+      // Handle image file if it exists
+      if (data.image instanceof File) {
+        fd.append("image", data.image);
       }
+
+      // Append other fields
+      Object.keys(data).forEach((key) => {
+        if (data[key] && key !== "image") {
+          fd.append(key, data[key]);
+        }
+      });
+
       const _ = await requests.putEvent(editData?._id, fd);
       setEvents((await requests.getEvents())?.data);
       toast.success("Update successful");
@@ -230,11 +247,15 @@ function Editor({ editData }) {
       <h4>Update Event</h4>
       <>
         <div className="text-center mb-4">
-          {/* <img
-                    src={data?.image}
-                    alt="Profile"
-                    className="w-[100px] h-[100px] rounded-full object-cover mx-auto mb-3"
-                /> */}
+          <div className="mb-3">
+            <input
+              type="file"
+              accept="img/*,image/*"
+              onChange={handleFile}
+              className="form-control"
+              placeholder="Title"
+            />
+          </div>
         </div>
         <div className="text-center mb-4">
           <h5 className="text-gray-700">{editData?.title} </h5>
@@ -266,8 +287,8 @@ function Editor({ editData }) {
               onChange={handleChange}
               className="form-control"
               placeholder="Title"
-              name='date'
-              value={((data?.date||'').split('T')[0]||data?.date)}
+              name="date"
+              value={(data?.date || "").split("T")[0] || data?.date}
             />
           </div>
           <textarea
@@ -311,24 +332,33 @@ function Adder() {
       [name]: value,
     });
   }
-
+  function handleFile(e) {
+    const { files } = e.target;
+    setData({
+      ...data,
+      ["image"]: files[0],
+    });
+  }
 
   async function onSubmit() {
     const tst = toast.loading("Adding...");
-    let fd = {}
-    const keys = Object.keys(data);
+    const fd = new FormData();
     try {
-      for (let item of keys) {
-        if (data[item]) {
-          fd = {
-            ...data,
-            [item]: data[item]
-          }
-        }
+      // Handle image file if it exists
+      if (data.image instanceof File) {
+        fd.append("image", data.image);
       }
+
+      // Append other fields
+      Object.keys(data).forEach((key) => {
+        if (data[key] && key !== "image") {
+          fd.append(key, data[key]);
+        }
+      });
+
       const _ = await requests.postEvent(fd);
       setEvents((await requests.getEvents())?.data);
-      toast.success("Impact Story added successfully");
+      toast.success("Event added successfully");
       setModal("");
     } catch (error) {
       toast.error(`ERROR: ${error?.response?.data?.message || error?.message}`);
@@ -342,11 +372,15 @@ function Adder() {
       <h4>Add Event</h4>
       <>
         <div className="text-center mb-4">
-          {/* <img
-                    src={data?.image}
-                    alt="Profile"
-                    className="w-[100px] h-[100px] rounded-full object-cover mx-auto mb-3"
-                /> */}
+          <div className="mb-3">
+            <input
+              type="file"
+              accept="img/*,image/*"
+              onChange={handleFile}
+              className="form-control"
+              placeholder="Title"
+            />
+          </div>
         </div>
         <div className="text-center mb-4">
           <h5 className="text-gray-700">{data?.title} </h5>
@@ -378,7 +412,7 @@ function Adder() {
               onChange={handleChange}
               className="form-control"
               placeholder=""
-              name='date'
+              name="date"
               value={data?.date}
             />
           </div>
@@ -406,4 +440,3 @@ function Adder() {
     </div>
   );
 }
-

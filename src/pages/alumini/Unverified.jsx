@@ -133,7 +133,7 @@ const Unverified   = () => {
                   </div>
                   <div className=" ms-auto my-auto d-flex ps-3">
                     <div
-                      className="ms-auto slideLeft border border-dark rounded p-2 pt-3"
+                      className="ms-auto slideLeft border border-dark rounded p-2 pt-3 cursor-pointer"
                       onClick={() => {
                           (async () => {
                             const tst = toast.loading("Verifying...");

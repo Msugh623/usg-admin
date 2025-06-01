@@ -144,7 +144,7 @@ const LoginWithEmail = ({setter}) => {
                             id="email"
                             name='email'
                             onChange={handleInput}
-                            className="w-full px-4 py-2 text-black themebg border border-gray-300 border bg-none rounded-lg focus:outline-none"
+                            className="w-full px-4 py-2 text-black themebg  border-gray-300 border bg-none rounded-lg focus:outline-none"
                             value={data.email}
                             placeholder="Enter your email"
                         />

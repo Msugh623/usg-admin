@@ -54,7 +54,7 @@ const Impact = () => {
                           }
                          
                       </div>
-                     {!searchImpact&& <div className="ms-auto slideLeft themebg rounded p-2"onClick={()=>setModal(<Adder/>)}>Add New</div>}
+                     {!searchImpact&& <div className="ms-auto slideLeft themebg rounded p-2 cursor-pointer"onClick={()=>setModal(<Adder/>)}>Add New</div>}
             </div>
 
             {/* impact Card */}
