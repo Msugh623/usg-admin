@@ -1,4 +1,4 @@
-import { api,usgOrigin,path } from "./api";
+import { api, usgOrigin, path } from "./api";
 
 class Routes {
   // Auth
@@ -235,6 +235,21 @@ class Request extends Routes {
   };
   getLeaders = async () => {
     const res = await api.get(this.leaders);
+    return res.data;
+  };
+
+  postLeader = async (state) => {
+    const res = await api.post(this.leaders, state);
+    return res.data;
+  };
+
+  putLeader = async (id, state) => {
+    const res = await api.put(this.leaders + "/" + id, state);
+    return res.data;
+  };
+
+  deleteLeader = async (id) => {
+    const res = await api.delete(this.leaders + "/" + id);
     return res.data;
   };
 

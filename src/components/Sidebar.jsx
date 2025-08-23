@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -115,6 +115,17 @@ const Sidebar = () => {
         </Link>
 
         <Link
+          to="/dashboard/leaders"
+          className={`${
+            location.pathname.includes("/dashboard/leaders")
+              ? "bg-light themetxt p-3 no-dec"
+              : "nav-link text-white py-3 hover:bg-gray-700 rounded"
+          }`}
+        >
+          Leaders
+        </Link>
+
+        <Link
           to="/dashboard/unverified"
           className={`${
             location.pathname.includes("/dashboard/unverified")
@@ -123,7 +134,7 @@ const Sidebar = () => {
           }`}
         >
           Verify Alumni
-        </Link>       
+        </Link>
       </nav>
     </div>
   );
