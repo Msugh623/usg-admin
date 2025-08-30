@@ -34,10 +34,7 @@ const StateContext = ({ children }) => {
 
   async function fetchData() {
     const tst =
-      localStorage.getItem("logintoken") &&
-      toast.loading(<Loader />, {
-        progress: loaded / 100,
-      });
+      localStorage.getItem("logintoken");
     setIsFetching(true);
     if (localStorage.getItem("logintoken")) {
       api.defaults.headers.common["Authorization"] =

@@ -6,6 +6,7 @@ import { useStateContext } from "../state/StateContext";
 import Navbar from "../components/Nav";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FaSpinner } from "react-icons/fa";
+import { api } from "../../api/api";
 
 const GetStarted = () => {
   const { setTitle } = useStateContext();
@@ -140,6 +141,22 @@ const LoginWithEmail = ({ setter }) => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [adminEmails, setAdminEmails] = useState([]);
+
+  // Load admin emails from admin.txt file
+  useEffect(() => {
+    async function loadAdminEmails() {
+      try {
+       const admins = await api.get("/auth/admin-emails");
+       setAdminEmails(admins.data.emails);
+      } catch (error) {
+        console.error("Error loading admin emails:", error);
+        // Fallback to empty array if file can't be loaded
+        setAdminEmails([]);
+      }
+    }
+    loadAdminEmails();
+  }, []);
 
   function handleInput({ target }) {
     setData((prev) => ({
@@ -147,15 +164,16 @@ const LoginWithEmail = ({ setter }) => {
       [target.name]: target.value,
     }));
   }
-  const admins = ["msugh@gmail.com", "osazee.isonarae@gmail.com"];
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       setIsLoading(true);
-      if (!admins.includes(data.email)) {
+      if (!adminEmails.includes(data.email)) {
         throw new Error("Unauthorized email");
       }
       const res = await requests.usrSessionLogin(data);
+      console.log(res)
       localStorage.setItem("logintoken", res.token);
       navigate("/dashboard");
       location.reload();

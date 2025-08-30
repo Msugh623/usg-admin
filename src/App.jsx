@@ -21,6 +21,7 @@ import Testimonials from "./pages/resources/Testimonials";
 import { ToastContainer } from "react-toastify";
 import Expert from "./pages/alumini/Expert";
 import Unverified from "./pages/alumini/Unverified";
+import Admins from "./pages/Admins";
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
             <Route path="testimonials" element={<Testimonials />} />
             <Route path="expert" element={<Expert />} />
             <Route path="unverified" element={<Unverified />} />
+            <Route path="admins" element={<Admins />} />
 
             {/* 404 handler for /dashboard */}
             <Route
