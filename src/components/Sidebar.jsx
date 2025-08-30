@@ -126,6 +126,17 @@ const Sidebar = () => {
         </Link>
 
         <Link
+          to="/dashboard/testimonials"
+          className={`${
+            location.pathname.includes("/dashboard/testimonials")
+              ? "bg-light themetxt p-3 no-dec"
+              : "nav-link text-white py-3 hover:bg-gray-700 rounded"
+          }`}
+        >
+          Testimonials
+        </Link>
+
+        <Link
           to="/dashboard/unverified"
           className={`${
             location.pathname.includes("/dashboard/unverified")

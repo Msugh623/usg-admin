@@ -17,6 +17,7 @@ import News from "./pages/resources/News";
 import Events from "./pages/resources/Events";
 import About from "./pages/resources/About";
 import Leaders from "./pages/resources/Leaders";
+import Testimonials from "./pages/resources/Testimonials";
 import { ToastContainer } from "react-toastify";
 import Expert from "./pages/alumini/Expert";
 import Unverified from "./pages/alumini/Unverified";
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="events" element={<Events />} />
             <Route path="about" element={<About />} />
             <Route path="leaders" element={<Leaders />} />
+            <Route path="testimonials" element={<Testimonials />} />
             <Route path="expert" element={<Expert />} />
             <Route path="unverified" element={<Unverified />} />
 

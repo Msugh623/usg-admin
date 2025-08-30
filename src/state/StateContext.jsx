@@ -173,6 +173,7 @@ const StateContext = ({ children }) => {
         fetchData,
         events,
         testimonies,
+        setTestimonies,
         impact,
         amw,
         about,

@@ -88,6 +88,21 @@ class Request extends Routes {
     return res.data;
   };
 
+  postTestimony = async (state) => {
+    const res = await api.post(this.testimonies, state);
+    return res.data;
+  };
+
+  putTestimony = async (id, state) => {
+    const res = await api.put(this.testimonies + "/" + id, state);
+    return res.data;
+  };
+
+  deleteTestimony = async (id) => {
+    const res = await api.delete(this.testimonies + "/" + id);
+    return res.data;
+  };
+
   getChapters = async () => {
     const res = await api.get(this.chapters);
     return res.data;
