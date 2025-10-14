@@ -28,6 +28,7 @@ class Routes {
   ams = "/alumni-spot";
   aboutUs = "/aboutus";
   imedia = "/gallery";
+  slides = "/slides";
   eSub = "/user/email-sub";
   contact = "/user/contact";
 }
@@ -265,6 +266,24 @@ class Request extends Routes {
 
   deleteLeader = async (id) => {
     const res = await api.delete(this.leaders + "/" + id);
+    return res.data;
+  };
+
+  // Slides
+  getSlides = async () => {
+    const res = await api.get(this.slides);
+    return res.data;
+  };
+  postSlide = async (state) => {
+    const res = await api.post(this.slides, state);
+    return res.data;
+  };
+  putSlide = async (id, state) => {
+    const res = await api.put(this.slides + "/" + id, state);
+    return res.data;
+  };
+  deleteSlide = async (id) => {
+    const res = await api.delete(this.slides + "/" + id);
     return res.data;
   };
 

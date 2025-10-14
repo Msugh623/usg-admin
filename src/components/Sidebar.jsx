@@ -124,6 +124,16 @@ const Sidebar = () => {
         >
           Leaders
         </Link>
+        <Link
+          to="/dashboard/slides"
+          className={`${
+            location.pathname.includes("/dashboard/slides")
+              ? "bg-light themetxt p-3 no-dec"
+              : "nav-link text-white py-3 hover:bg-gray-700 rounded"
+          }`}
+        >
+          Slides
+        </Link>
 
         <Link
           to="/dashboard/testimonials"
