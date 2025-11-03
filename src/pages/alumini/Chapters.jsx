@@ -131,7 +131,9 @@ const Chapters = () => {
                       }
                       className="text-dark no-dec pe-2"
                     >
-                      {chapter?.whatsappLink? chapter?.whatsappLink: "Not Available"}
+                      {chapter?.whatsappLink
+                        ? chapter?.whatsappLink
+                        : "Not Available"}
                     </a>
                   </div>
                   <div className=" ms-auto d-flex ps-3">
@@ -329,13 +331,15 @@ function Adder() {
     const tst = toast.loading("Adding...");
     const fd = new FormData();
     const keys = Object.keys(data);
+    let obj = {};
+
     try {
       for (let item of keys) {
         if (data[item]) {
-          fd.append(item, data[item]);
+          obj[item] = data[item];
         }
       }
-      const _ = await requests.postChapter(fd);
+      const _ = await requests.postChapter(obj);
       setChapters((await requests.getChapters()).data);
       toast.success("Chapter Story added successfully");
       setModal("");
