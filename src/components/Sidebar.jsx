@@ -74,6 +74,16 @@ const Sidebar = () => {
           Chapters
         </Link>
         <Link
+          to="/dashboard/program-presidents"
+          className={`${
+            location.pathname.includes("/dashboard/program-presidents")
+              ? "bg-light themetxt p-3 no-dec"
+              : "nav-link text-white py-3 hover:bg-gray-700 rounded"
+          }`}
+        >
+          Program Presidents
+        </Link>
+        <Link
           to="/dashboard/alumini-spotlight"
           className={`${
             location.pathname.includes("/dashboard/alumini-spotlight")

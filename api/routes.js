@@ -17,6 +17,7 @@ class Routes {
 
   programmes = "/programme";
   chapters = "/chapter";
+  programPresidents = "/program-presidents";
   resources = "/resources";
   testimonies = "/testimonies";
   news = "/news";
@@ -121,6 +122,31 @@ class Request extends Routes {
 
   deleteChapter = async (id) => {
     const res = await api.delete(this.chapters + "/" + id);
+    return res.data;
+  };
+
+  getProgramPresidents = async () => {
+    const res = await api.get(this.programPresidents);
+    return res.data;
+  };
+
+  getProgramPresidentById = async (id) => {
+    const res = await api.get(this.programPresidents + "/" + id);
+    return res.data;
+  };
+
+  postProgramPresident = async (state) => {
+    const res = await api.post(this.programPresidents, state);
+    return res.data;
+  };
+
+  putProgramPresident = async (id, state) => {
+    const res = await api.put(this.programPresidents + "/" + id, state);
+    return res.data;
+  };
+
+  deleteProgramPresident = async (id) => {
+    const res = await api.delete(this.programPresidents + "/" + id);
     return res.data;
   };
 

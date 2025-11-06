@@ -11,6 +11,7 @@ import Main from "./pages/dash/Main";
 import AMW from "./pages/alumini/AMW";
 import Impact from "./pages/alumini/Impact";
 import Chapters from "./pages/alumini/Chapters";
+import ProgramPresidents from "./pages/alumini/ProgramPresidents";
 import Spotlight from "./pages/alumini/Spotlight";
 import Resources from "./pages/resources/Resources";
 import News from "./pages/resources/News";
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="alumni-making-waves" element={<AMW />} />
             <Route path="impact-stories" element={<Impact />} />
             <Route path="chapters" element={<Chapters />} />
+            <Route path="program-presidents" element={<ProgramPresidents />} />
             <Route path="alumini-spotlight" element={<Spotlight />} />
             <Route path="resources" element={<Resources />} />
             <Route path="news" element={<News />} />
